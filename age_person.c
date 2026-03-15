@@ -13,6 +13,7 @@ struct person {
     int month;
     int day;
     int age;
+    int compare;
 };
 
 int main() {
@@ -28,6 +29,9 @@ int main() {
         p[i].year = p[i].birth / 10000;
 
         p[i].birth = p[i].birth - (p[i].year * 10000);
+
+        p[i].compare = p[i].birth;
+
         p[i].month = p[i].birth / 100;
 
         p[i].day = p[i].birth - (p[i].month * 100);
@@ -40,13 +44,27 @@ int main() {
     int high_index, low_index;
 
     for(int i = 0; i < count; i++) {
-        if(p[i].age >= high) {
+        if(p[i].age > high) {
             high = p[i].age;
             high_index = i;
         }
-        if(p[i].age <= low) {
+        else if(p[i].age == high) {
+            if(p[i].compare < p[high_index].compare) {
+                high = p[i].age;
+                high_index = i;
+            }
+            else continue;
+        }
+        if(p[i].age < low) {
             low = p[i].age;
             low_index = i;
+        }
+        else if(p[i].age == low) {
+            if(p[i].compare > p[low_index].compare) {
+                low = p[i].age;
+                low_index = i;
+            }
+            else continue;
         }
     }
 
