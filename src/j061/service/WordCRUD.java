@@ -80,5 +80,6 @@ public class WordCRUD implements ICRUD {
         if (!isFound) {
             System.out.println("Cannot find the word.");
         }
+
     }
 }
